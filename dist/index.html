@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simple Vuetify Page</title>
+  <!--
+  <link href="https://cdn.jsdelivr.net/npm/@mdi/font/css/materialdesignicons.min.css" rel="stylesheet">
+  -->
+  <link href="https://cdn.jsdelivr.net/npm/vuetify@3.4.10/dist/vuetify.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/vue@3.4.14/dist/vue.global.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vuetify@3.4.10/dist/vuetify.min.js"></script>
+  <style>
+    .plantuml {
+      margin: 10px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <v-app>
+      <v-container>
+        <v-card style="padding: 20px;">
+          <v-card-title>Simple Vuetify Page</v-card-title>
+          <v-divider></v-divider>
+          <v-card-text>
+            This is a simple Vuetify page created using a single HTML file.
+          </v-card-text>
+          <img
+            src="https://www.plantuml.com/plantuml/svg/HOzB3i8m34JtESLm02vG8LJOSuX0JMif7vGu4gBgtN4IK3UsF7wsnsCMcwHuPmwlP6Tl8HG_a5J8cBKrDrmSFmZ7CwxnZW5DnHGvp915OyPKKgqqMU4OJ0MLlzbtvQEdnfbQxsl-CiXbCYk5QSDli5ySyEJ0UTcTdBJNmJuFOQz6HvNg3ry0"
+            class="plantuml">
+
+
+          <v-card-text>Hello, {{ hola }}</v-card-text>
+
+          <v-menu v-model="menu" :close-on-content-click="false" location="end">
+            <template v-slot:activator="{ props }">
+              <v-btn color="indigo" v-bind="props"> Menu as Popover </v-btn>
+            </template>
+
+            <v-card min-width="300">
+              <v-list>
+                <v-list-item prepend-avatar="https://ui-avatars.com/api/?background=ffffff&bold=true&rounded=true&format=svg&name=Shawn+Qiu" title="Shawn Qiu"
+                  subtitle="Developer">
+                  <template v-slot:append>
+                    <v-btn variant="text" :class="fav ? 'text-red' : ''" icon="mdi-heart" @click="fav = !fav"></v-btn>
+                  </template>
+                </v-list-item>
+              </v-list>
+
+              <v-divider></v-divider>
+
+              <v-list>
+                <v-list-item>
+                  <v-switch v-model="message" color="purple" label="Enable messages" hide-details></v-switch>
+                </v-list-item>
+
+                <v-list-item>
+                  <v-switch v-model="hints" color="purple" label="Enable hints" hide-details></v-switch>
+                </v-list-item>
+              </v-list>
+
+              <v-card-actions>
+                <v-spacer></v-spacer>
+
+                <v-btn variant="text" @click="menu = false"> Cancel </v-btn>
+                <v-btn color="primary" variant="text" @click="menu = false">
+                  Save
+                </v-btn>
+              </v-card-actions>
+            </v-card>
+          </v-menu>
+
+
+        </v-card>
+      </v-container>
+    </v-app>
+  </div>
+
+  <script>
+    const { createApp } = Vue
+    const { createVuetify } = Vuetify
+    const vuetify = createVuetify()
+    const app = createApp({
+      data() {
+        return {
+          hola: 'Vue App with Vuetify',
+          fav: true,
+          menu: false,
+          message: false,
+          hints: true,
+        }
+      }
+    })
+    app.use(vuetify).mount('#app')
+  </script>
+</body>
+
+</html>
